@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    Refactor Imperative code into Functional const users = [ { name : " alice ",
+    role : "admin", score : 10}, { name : "bob", role : "user", score : 5}, {
+    name : " charlie", role : "admin", score : 20} ]; // Goal : get uppercased
+    names of admins const getAdminNames = (users) => { const results = [];
+    for(let i = 0; i < users.length; i++){ // Loop!!! if(users[i].role ===
+    'admin' ){ // hardcoded logic const cleanName = users[i].name.trim(); //
+    hidden mutation logic results.push(cleanName.toUpperCase()); // Mutating
+    array!!! } } return results; };
+  </body>
+  <script>
+    const users = [
+      { name: " alice ", role: "admin", score: 10 },
+      { name: "bob", role: "user", score: 5 },
+      { name: "  charlie", role: "admin", score: 20 },
+    ];
+
+    const compose = (f, g) => (x) => f(g(x));
+    const prop = (key) => (obj) => obj[key];
+    const eq = (check) => (val) => val === check;
+    const trim = (str) => str.trim();
+    const toUpper = (str) => str.toUpperCase();
+
+    const filter = (pred) => (arr) => arr.filter(pred);
+    const map = (fn) => (arr) => arr.map(fn);
+
+    // Define the steps
+    const isAdmin = compose(eq("admin"), prop("role"));
+    const cleanName = compose(toUpper, trim);
+
+    //Build the pipeline
+    //Read from bottom to top
+    //1. Filter only admins
+    //2. Map (transform) them to their names
+    //3. Map (transform) names to clean/upper
+
+    const getAdmins = (data) =>
+      data.filter(isAdmin).map(prop("name")).map(cleanName);
+
+    console.log(getAdmins(users));
+  </script>
+</html>

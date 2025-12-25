@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    //1. No outside variables.
+    //2. Input -> Output mapping only
+    const increment = (counter) => counter + 1;
+
+    //Looks simple ? 
+    //problem and question arises how do we increment a value 10 times without using for loop?
+
+    //answer lies in RECURSION
+
+    //Type: (Number, Number) -> Number
+    const repeatIncrement = (times,value) => {
+        if (times === 0) return value;
+        return repeatIncrement(times - 1, value + 1);
+    }
+
+    console.log(repeatIncrement(10, 0));
+
+    //Analysis:
+
+    //We never said value = value + 1; We passed value + 1  
+    //
+</script>
+</html>

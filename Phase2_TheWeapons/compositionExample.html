@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    //A simple composition function right to left Execution
+    const compose = (f, g) => (x) => f(g(x));
+
+    //Usage
+    const getName = (name) => user.name;
+    const upperCase = (str) => str.toUpperCase();
+
+    //We build new function by sticking two others together
+    const getUpperName = compose(upperCase, getName);
+
+    console.log(getUpperName({ name: "haskell" }));
+  </script>
+</html>

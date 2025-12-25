@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    /*
+    function processNumbers(nums){
+        let result = [];
+        for(let i = 0; i < nums.length; i++){
+            result.push((nums[i]*2)+1);
+        }
+        return result;
+    }
+    */
+
+    //helper (for now write it by yourself to undestand it isnt magic)
+    const compose = (f, g) => (x) => f(g(x));
+
+    //pure transformation logic
+    const transform = (y) => y * 2 + 1;
+    //the processing function
+    const processNumbers = (nums) => nums.map(transform);
+    //usage
+    console.log(processNumbers([1, 2, 3, 4]));
+  </script>
+</html>
