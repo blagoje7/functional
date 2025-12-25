@@ -1,7 +1,6 @@
 const transform = (y) => (y*2)+1;
 // here we are passing one argument in arrow function that doubles that argument and then adds one to product of multiplication
-
-
+-----------------------------
 const processNumbers = (nums) => nums.map(transform);
 
 // here we again are passing one argument that then gets applied map with our already defined transform function transform
@@ -46,7 +45,12 @@ then returns NEW array back without mutating old one
     // it cant find it
     // Error: Uncaught TypeError
 
-// console.log(processNumbers([1,2,3,4])); it takes that passed array iterates through it and applies our transform fn 
+    // in other exampe if it was array of arrays
+    // since JS is wekly typed language it wont warn us fo error right away 
+    // rather it would try [1,2] * 2 - which doesnt exist in JS so result would be NaN
+    // resulting array would be [Nan, Nan] ( if it was some operation that could be done on arrays we would get result just not right one)
+ -------------------------
+console.log(processNumbers([1, 2, 3, 4]));
+// this takes that passed array iterates through it and applies our transform fn 
 // to every element
 
-console.log(processNumbers([1, 2, 3, 4]));
