@@ -46,13 +46,13 @@ Function accessing anything but its arguments
 - `Why is it a trap` : Your function is no longer portable, you cannot copy paste it into another file because it uses invisible context.
 - `The rule` : If its not into ( arguments ) it doesnt exist.
 
-3. Time dependant functions
+# 3. Time dependant functions
 Functions that return different results at different times even with the same inputs.
 - `The pit` : Using Date.now() or Math.random() directly inside your logic.
 - `Why is it a trap` : You cannot unit test this code easily. "If tested on Tuesday it fails, on Wednesday it passes."
 - `Fix` : Pass time or randomness as argument. ( Dependency injection )
 
-4. The Loop variable leak
+# 4. The Loop variable leak
 Using `var` ( sometimes let ) in loops where scope leaks out or persists longer then expected.
 - `The pit` : The value i after the loop is still accessible and can affect late code.
 
@@ -68,9 +68,9 @@ When passing value + 1 in recursion is new variable being made ?
 In JavaScript ( and most languages ) every time you call a function, engine creates a new Execution Context ( a fresh box of memory ).
 - `Scope` : Variables times and value inside the function are local to that specific call
 - `What happens` :
-    1. JS calculates value + 1, eg. 0 + 1 = 1
-    2. It crates new Execution Context for next call
-    3. It places 1 into the new context as a argument 
+1. JS calculates value + 1, eg. 0 + 1 = 1
+2. It crates new Execution Context for next call
+3. It places 1 into the new context as a argument 
 - `The stack` : If this process repeats 10 times we have 10 separate boxes each with its own "value" as variable.
 - `Why it matters` : This recursion can cause stack overflow, ie. you run out of memory for these "boxes".
         
