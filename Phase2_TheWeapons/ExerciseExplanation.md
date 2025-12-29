@@ -76,3 +76,83 @@ o Parentheses:
     -> 2+ Arguments: Parentheses are mandatory. const add = (a, b) => a + b;
 
     -> 1 Argument: Parentheses are optional. x => x * 2 is the same as (x) => x * 2
+
+
+# Tool 3:
+>filter()
+
+The concept `filter` is like the night club bouncer. It takes list and **decision-making**  function (a predicate). It runs every item through the function. 
+
+>- If function return `true` item stays on the new list
+>- If function return `false` gets kicked out of the new list.
+
+- `The rule` : output list is alwaysd shorter or same length as input and items themselves do not change.
+
+### Imperative v Functional
+- ` Task `: Keep only the even numbers
+
+```javascript
+
+//Imperative
+const numbers = [1, 2, 3, 4, 5, 6, 7, 8];
+const evens = []; // create empty container
+
+for(let i = 1; i < numbers.length; i++){
+    if (numbers[i] % 2 == 0){ //the logic
+        evens.push(numbers[i]); //the mutation
+    }
+}
+```
+
+```javascript
+//Functional
+const numbers = [1, 2, 3, 4, 5, 6, 7, 8];
+
+//Decision logic (The predicate)
+//Type : (Number) -> Boolean
+const isEven = num => num % 2 === 0;
+//The usage
+const evens = numbers.filter(isEven);
+//The result: [2 ,4, 6]
+ 
+```
+
+>How this works ?
+- `You`: Hand over `isEven` to the `filter`.
+- `Filter` : "Ill run this logic on every item. If it beeps `true` ill keep the item.
+
+# Tool 4: Reduce - The swiss army knife
+`The concept` : `reduce` is most powerfool tool of them all. It takes `list` and combines it into the single value.
+
+- The "single value" number (sum), object or another array!
+- `Fun fact` : You can actually build `map` and `filter` using `reduce`.
+
+*** Key difference *** : `filter` and `map` look at items one by one in isolation. `reduce` carries a memory (Accumulator) from one step to another.
+
+### Imperative vs Functional
+##### Imperative
+```javascript
+
+const numbers = [1, 2, 3, 4];
+let sum = 0; //The accumulator starts at 0
+
+for(let i = 0; i<numbers.length; i++){
+    sum = sum + numbers[i];
+}
+```
+##### Functional
+`reduce` needs two things:
+- **The combiner function** : How to merge current item into the memory. `(memory, item) => newMemory`
+- **The initial value** : There does the memory start ? (e.g. 0)
+```javascript
+const numbers = [1, 2, 3, 4];
+//The combiner logic
+//(Accumulater, Current) -> New Accumulator
+const add = (acc, current) => acc + current;
+
+//The usage
+//.reduce(logic, initialValue)
+const tool = numbers.reduce(add, 0);
+//Result: 10
+```
+

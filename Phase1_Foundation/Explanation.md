@@ -2,7 +2,7 @@ Function in JS is not same as mathematical function. Because of scope and mutati
 Function should be "anonymous" and operate only on its inputs.
 
 
-> example 1: badImperative.html
+> example 1: https://github.com/blagoje7/functional/blob/main/Phase1_Foundation/badImperative.htmlbadImperative.html
 
 # Why is imperative Bad ? 
 
