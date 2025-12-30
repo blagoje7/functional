@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    Write a pipeline that wraps user in Maybe and safely extracts the first
+    letter. If anything is missing, it should return Nothing.
+  </body>
+  <script>
+    const getFirstLetterOfBio = (user) => {
+      // If user is null -> Crash
+      // If bio is null -> Crash
+      // If bio is empty string -> Crash or Undefined behavior on [0]
+      return user.bio[0];
+    };
+
+    // Test case
+    const badUser = { id: 1, bio: null };
+    /*
+    ////////////////////////////////////////
+    //  Solution /////////////////////
+    ///////////////////////////////////////
+    
+    const safeProp = key => obj => Maybe(obj[key]);
+
+    const Just = (val) => ({
+        map : f => Just(f(val)),
+        chain : f => f(val),
+        inspect : () => `Just(${val})`
+    });
+
+    const Nothing = () => ({
+        map : f => Nothing(),
+        chain : f => Nothing(),
+        inspect : f => `Nothing`
+    })
+
+    const Maybe = (val) => (val === null || val === undefined ) ? Nothing() : Just(x);
+
+    const getBio = user => safeProp('bio')
+    const getFirstLetter = str => str[0];
+
+    const result = Maybe(badUser).chain(getBio).map(getFirstLetter())
+
+    console.log(result.inspect());
+*/
+
+ 
+    //////////////////////////////////////////////////////////////
+    //// 1. Tools(Monad Implementation) ////
+    /////////////////////////////////////////////////////////////
+
+    const Just = (val = {
+      map: (f) => Just(f(val)),
+      chain: (f) => f(val),
+      inspect: () => `Just(${val})`,
+    });
+
+    const Nothing = () => ({
+      map: (f) => Nothing(),
+      chain: (f) => Nothing(),
+      inspect: () => `Nothing()`,
+    });
+
+    //Fix 1. Using val instead of x in Maybe
+    const Maybe = (val) =>
+      val === null || val === undefined ? Nothing() : Just(val);
+
+    const safeProp = (key) => (obj) => Maybe(obj[key]);
+
+    ////////////////////////////////////////////////////////////
+    ////            2. The logic                    /////
+    ///////////////////////////////////////////////////////////
+
+    //Fix 2. Point-free style
+    const getBio = safeProp("bio");
+    const getFirstLetter = (str) => str[0];
+
+    ///////////////////////////////////////////////////////////
+    ////           3. Execution                     ///
+    ///////////////////////////////////////////////////////////
+
+    const result = Maybe(badUser).chain(getBio).map(getFirstLetter);
+
+    console.log(result.inspect());
+  </script>
+</html>

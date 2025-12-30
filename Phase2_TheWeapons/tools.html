@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tools</title>
+  </head>
+  <body>
+    <h3>Tasks</h3>
+    <ul>
+      <li>1. Take a list of users</li>
+      <li>2. filter to keep only active users</li>
+      <li>3. map to extract their balance</li>
+      <li>4. reduce to get 'total balance'</li>
+    </ul>
+  </body>
+  <script>
+    const users = [
+      { id: 1, status: "active", balance: 100 },
+      { id: 2, status: "inactive", balance: 50 },
+      { id: 3, status: "active", balance: 200 },
+    ];
+    //try
+    /*
+        const findActive = (list, predacate) => list.filter(predicate);
+        const activeUsers = findActive(users, 'active'); 
+        const balanceOfActive = activeusers.map('balance');     //Standard JavaScript filter and map do not know what to do with a string like 'active' or 'balance'. You must give them a function that does the work.
+        const totalBalance = balanceOfActive.reduce();
+*/
+
+    //Explained solution
+
+    // -----------------------------------------
+    // 1. Define the "Remote Controls" (Helpers)
+    // -----------------------------------------
+
+    //Predicate: Returns true if status is active
+    //(user) -> Bool
+    const isActive = (user) => user.status === "active";
+
+    //Transformer: Extracts the balance property
+    //(user) -> Number
+    const getBalance = (user) => user.balance;
+
+    //Combiner: Adds two numbers
+    //(Number, Number) -> Number
+    const add = (acc, value) => acc + value;
+
+    // -----------------------------------------
+    // 2. Build the pipeline
+    // -----------------------------------------
+    const totalBalanceActive = users.filter(isActive).map(getBalance).reduce(add, 0);
+
+    console.log(totalBalanceActive);
+  </script>
+</html>

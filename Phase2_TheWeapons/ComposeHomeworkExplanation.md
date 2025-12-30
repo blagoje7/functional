@@ -47,14 +47,16 @@ Array.prototype.map = function(callbackFn) {}
 
 This is "sort of composition", we pass only one argument
  
-In this case array it would fail if it wasnt array 
-if we passed number to map, in this case processNumbars(123) JS tries to find .map of number 123  -> it cant find it
->Error: Uncaught TypeError
+### In this case 
+`It would fail if it wasnt array` 
+- If we passed `number` to `map`
+  -  in this case `processNumbars(123)` JS tries to find .map of number 123, `it cant find it`
+>Error : Uncaught TypeError
 
-In other exampe if it was array of arrays
-Since JS is wekly typed language it wont warn us fo error right away 
-rather it would try [1,2] * 2 - which doesnt exist in JS so result would be `NaN`
-resulting array would be `[Nan, Nan]` ( if it was some operation that could be done on arrays we would get result just not right one )
+#### In other exampe 
+`If it was array of arrays` 
+- Since JS is wekly typed language it wont warn us fo error right away rather it would try $ [1,2] * 2 $ - which `doesnt exist in JS` so result would be `NaN` resulting array would be `[Nan, Nan]` 
+>( if it was some operation that could be done on arrays we would get result just not right one )
 
 ```javascript
 console.log(processNumbers([1, 2, 3, 4]));
